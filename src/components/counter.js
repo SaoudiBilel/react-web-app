@@ -5,11 +5,13 @@ function Counter(props) {
 
   const increment = () => {
     let c = state.counter + 1;
+    if (c <= 0) return;
     setState({ ...state, counter: c, list: new Array(c).fill(0) });
   };
 
   const decrement = () => {
     let c = state.counter - 1;
+    if (c <= 0) return;
     setState({ ...state, counter: c, list: new Array(c).fill(0) });
   };
 
