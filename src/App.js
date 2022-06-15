@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Counter from "./components/Counter";
 import About from "./components/about/About";
-import Gallery from "./components/Gallery";
+import Gallery from "./components/gallery/Gallery";
 import Home from "./components/Home";
 import { Route, Routes, Link, BrowserRouter as Router } from "react-router-dom";
 
