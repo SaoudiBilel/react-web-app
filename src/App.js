@@ -35,7 +35,7 @@ function App() {
             </li>
           </ul>
         </nav>
-        <div className="container">
+        <div className="m-4">
           <Routes>
             <Route
               path="/counter"
