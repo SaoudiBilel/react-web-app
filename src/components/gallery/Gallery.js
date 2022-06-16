@@ -9,20 +9,24 @@ export default function Gallery() {
     hits: [],
     totalPages: 1,
     pages: [],
+    pageSize: 20,
   });
 
-  const [keyword, setKeyword] = useState("paris");
+  const [currentKeyword, setCurrentKeyword] = useState("paris");
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
 
   const getHits = () => {
     let url =
       "https://pixabay.com/api/?key=28065417-447b4705424148c20efada345&q=" +
-      keyword + "&page=" + currentPage + "&per_page=" + pageSize;
+      currentKeyword +
+      "&page=" +
+      currentPage +
+      "&per_page=" +
+      state.pageSize;
     axios
       .get(url)
       .then((resp) => {
-        let nbPages = ((resp.data.totalHits / pageSize) | 0) + 1;
+        let nbPages = ((resp.data.totalHits / state.pageSize) | 0) + 1;
         setState({
           ...state,
           hits: resp.data.hits,
@@ -36,31 +40,22 @@ export default function Gallery() {
       });
   };
 
-  const onSetKeyword = (event) => {
-    setKeyword(event.target.value);
-  };
-
-  const onSearch = (event) => {
-    event.preventDefault();
+  const onSearch = (keyword) => {
+    setCurrentKeyword(keyword);
     setCurrentPage(1);
-    getHits();
   };
 
   useEffect(() => {
     getHits();
-  }, [currentPage]);
+  }, [currentKeyword, currentPage]);
 
   const goToPage = (index) => setCurrentPage(index);
 
   return (
     <div>
-      <Pagination state={state} currentPage={currentPage} goToPage={goToPage}/>
+      <Pagination state={state} currentPage={currentPage} goToPage={goToPage} />
       <div>
-        <SearchForm
-          keyword={keyword}
-          onSearch={onSearch}
-          onSetKeyword={onSetKeyword}
-        />
+        <SearchForm searchHandler={onSearch} />
         <PhotosList state={state} />
       </div>
     </div>
