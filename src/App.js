@@ -4,6 +4,7 @@ import Counter from "./components/Counter";
 import About from "./components/about/About";
 import Gallery from "./components/gallery/Gallery";
 import Home from "./components/Home";
+import PhotoDetails from "./components/gallery/PhotoDetails";
 import { Route, Routes, Link, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
             <Route path="/gallery" element={<Gallery/>}></Route>
             <Route path="/home" element={<Home/>}></Route>
             <Route path="/" element={<Gallery/>}></Route>
+            <Route path="/details/:id" element={<PhotoDetails/>}></Route>
           </Routes>
         </div>
       </Router>

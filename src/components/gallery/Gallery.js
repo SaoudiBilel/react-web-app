@@ -9,7 +9,7 @@ export default function Gallery() {
     hits: [],
     totalPages: 1,
     pages: [],
-    pageSize: 20,
+    pageSize: 21,
   });
 
   const [currentKeyword, setCurrentKeyword] = useState("paris");
@@ -33,7 +33,6 @@ export default function Gallery() {
           totalPages: nbPages,
           pages: new Array(nbPages).fill(0),
         });
-        //setCurrentPage();
       })
       .catch((err) => {
         console.log(err);
